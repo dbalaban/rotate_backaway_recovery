@@ -14,7 +14,7 @@ PLUGINLIB_EXPORT_CLASS(rotate_backaway_recovery::RotateBackawayRecovery, nav_cor
 namespace rotate_backaway_recovery
 {
 
-RotateBackawayRecovery::RotateBackaway() : local_costmap_(NULL), initialized_(false), should_backaway_(false), world_model_(NULL)
+RotateBackawayRecovery::RotateBackawayRecovery() : local_costmap_(NULL), initialized_(false), should_backaway_(false), world_model_(NULL)
 {
 }
 
@@ -45,7 +45,7 @@ void RotateBackawayRecovery::initialize(std::string name,
     blp_nh.param("min_vel_x", min_linear_vel_, 0.1);
     blp_nh.param("xy_goal_tolerance", linear_tolerance_, 0.1);
 
-    blp_nh.param("backaway_dist", backaway_dist_, "0.07");
+    blp_nh.param("backaway_dist", backaway_dist_, 0.07);
 
     world_model_ = new base_local_planner::CostmapModel(*local_costmap_->getCostmap());
 
@@ -78,7 +78,7 @@ void RotateBackawayRecovery::runRotateBehavior()
 
   while (n.ok() &&
          (!got_180 ||
-          std::fabs(angles::shortest_angular_distance(current_angle, start_angle)) > tolerance_))
+          std::fabs(angles::shortest_angular_distance(current_angle, start_angle)) > anguar_tolerance_))
   {
     // Update Current Angle
     local_costmap_->getRobotPose(global_pose);
@@ -92,7 +92,7 @@ void RotateBackawayRecovery::runRotateBehavior()
       double distance_to_180 = std::fabs(angles::shortest_angular_distance(current_angle, start_angle + M_PI));
       dist_left = M_PI + distance_to_180;
 
-      if (distance_to_180 < tolerance_)
+      if (distance_to_180 < anguar_tolerance_)
       {
         got_180 = true;
       }

@@ -1,0 +1,7 @@
+<library path="lib/librotate_backaway_recovery">
+  <class name="rotate_backaway_recovery/RotateBackawayRecovery" type="rotate_backaway_recovery::RotateBackawayRecovery" base_class_type="nav_core::RecoveryBehavior">
+    <description>
+      A recovery behavior that performs a 360 degree in-place rotation to attempt to clear out space. If this fails, the robot backs away from its current position.
+    </description>
+  </class>
+</library>
