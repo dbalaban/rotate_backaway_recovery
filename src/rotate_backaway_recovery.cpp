@@ -117,6 +117,7 @@ void RotateBackawayRecovery::runRotateBehavior()
       {
         ROS_ERROR("Rotate recovery can't rotate in place because there is a potential collision. Cost: %.2f",
                   footprint_cost);
+        ROS_WARN("Setting backaway recovery to true");
         should_backaway_ = true;
         return;
       }
@@ -196,6 +197,8 @@ void RotateBackawayRecovery::runBehavior()
   }
   ROS_WARN("Rotate recovery behavior started.");
   runRotateBehavior();
+
+  ROS_INFO("should backaway: %s", should_backaway_ ? "true" : "false");
 
   if (should_backaway_)
   {
