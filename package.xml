@@ -86,7 +86,6 @@
 
   <!-- The export tag contains other, unspecified, tags -->
   <export>
-    <!-- Other tools can request additional information be placed here -->
-
+    <nav_core plugin="${prefix}/rotate_backaway_plugin.xml" />
   </export>
 </package>
